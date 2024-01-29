@@ -1,0 +1,7 @@
+export const API_URL = 'https://back.stopbattle.org'
+export const AUTH_URL = 'http://127.0.0.1:8000/'
+export const SEARCH_URL = 'https://stopbattle.org'
+export const MANAGMENT_URL = 'https://volunteer.stopbattle.org'
+export const ECONTROL_TOKEN = 'Bearer 1|pODSgcq8qNOGcT9ABF4DqZYa8Db4xWKzHa9ePYxv'
+export const ECONTROL_URL = 'https://api.econtrol.in.ua/api/catcher'
+export const VERSION = '0.1.0'

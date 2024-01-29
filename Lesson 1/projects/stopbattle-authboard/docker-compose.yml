@@ -1,0 +1,64 @@
+version: '3.4'
+
+services:
+    db:
+        container_name: db
+        image: mysql:8
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        cap_add:
+          - SYS_NICE
+        expose:
+          - "3306"
+        environment:
+          MYSQL_ROOT_PASSWORD: CVyRgyqZSBFLqxkWy3FkndNWuLw9sdBWNsvLMg9RV2xmZjb5EyEz4E9fHSeGv5Q7
+          MYSQL_USER: auth_db_user
+          MYSQL_PASSWORD: 2GWhZrq4zJPspWUNYvADJJWv
+          MYSQL_DATABASE: auth_db
+        networks:
+          - default
+
+    backend:
+        container_name: api
+        restart: unless-stopped
+        build:
+          context: api/AuthBoard/
+          dockerfile: Dockerfile
+        expose:
+          - "8100"
+        ports:
+          - "8100:8100"
+        environment:
+            ASPNETCORE_URLS: http://+:8100
+            MysqlDatabase: auth_db
+            MysqlHost: db
+            MysqlPort: 3306
+            MysqlUser: auth_db_user
+            MysqlPassword: 2GWhZrq4zJPspWUNYvADJJWv
+            JWTSecret: qFNE3UDx3PFkLAYjkfTaD3JSw7uT9rrkevpm9sMLg5F7zhcKdFpVpgbxJvDYhepG
+            JWTAccessTokenLifetimeMinutes: 180
+            JWTRefreshTokenLifetimeDays: 16
+            JWTSessionMaxLifetimeDays: 30
+            JWTIssuer: stopbattle
+            JWTSubscriber: volunteer
+        depends_on:
+          - db
+        networks:
+          - default
+          
+    frontend:
+        container_name: front
+        restart: unless-stopped
+        build:
+          context: frontend/
+          dockerfile: Dockerfile
+        ports:
+          - "8000:8000"
+        environment:
+          BACKEND_URL: http://backend:8100
+          NEXTAUTH_URL: http://127.0.0.1:8000
+        depends_on:
+          - db
+          - backend
+        networks:
+          - default

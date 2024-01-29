@@ -1,0 +1,153 @@
+@font-face {
+  font-family: 'ProbaPro-Bold';
+  src: local('ProbaPro-Bold'), url('/fonts/ProbaPro-Bold.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'ProbaPro-Medium';
+  src: url('/fonts/ProbaPro-Medium.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'ProbaPro-Light';
+  src: url('/fonts/ProbaPro-Light.ttf') format('opentype');
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "ProbaPro-Bold", "ProbaPro-Medium", "ProbaPro-Light", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ant-table-thead>tr.ant-table-cell-row-hover:not(.ant-table-expanded-row)>td,
+.ant-table-tbody>tr.ant-table-cell-row-hover:not(.ant-table-expanded-row)>td,
+.ant-table-thead>tr:hover:not(.ant-table-expanded-row)>td,
+.ant-table-tbody>tr:hover:not(.ant-table-expanded-row)>td {
+  background: unset!important;
+}
+
+.login_record:hover {
+  color: #ffffff;
+  background-color: #007a68;
+}
+
+.login_record {
+  color: #ffffff;
+  background-color: #00b59c;
+}
+
+.logout_record:hover {
+  color: #ffffff;
+  background-color: #60007a;
+}
+
+.logout_record {
+  color: #ffffff;
+  background-color: #9801c3;
+}
+
+.delete_record:hover {
+  color: #ffffff;
+  background-color: #7a0012;
+}
+
+.delete_record {
+  color: #ffffff;
+  background-color: #ab0019;
+}
+
+.refresh_record:hover {
+  color: #ffffff;
+  background-color: #9b8100;
+}
+
+.refresh_record {
+  color: #ffffff;
+  background-color: #d0a800;
+}
+
+.update_record:hover {
+  color: #ffffff;
+  background-color: #005786;
+}
+
+.update_record {
+  color: #ffffff;
+  background-color: #006ea9;
+}
+
+.create_record:hover {
+  color: #ffffff;
+  background-color: #007306;
+}
+
+.create_record {
+  color: #ffffff;
+  background-color: #00a207;
+}
+
+.role_record:hover {
+  color: #ffffff;
+  background-color: #733b00;
+}
+
+.role_record {
+  color: #ffffff;
+  background-color: #b35b00;
+}
+
+.lockout_enable_record:hover {
+  color: #ffffff;
+  background-color: #98004f;
+}
+
+.lockout_enable_record {
+  color: #ffffff;
+  background-color: #c40066;
+}
+
+.lockout_disable_record:hover {
+  color: #ffffff;
+  background-color: #6f9800;
+}
+
+.lockout_disable_record {
+  color: #ffffff;
+  background-color: #88ba01;
+}
+
+.totp_enable_record:hover {
+  color: #ffffff;
+  background-color: #018660;
+}
+
+.totp_enable_record {
+  color: #ffffff;
+  background-color: #02a976;
+}
+
+.totp_disable_record:hover {
+  color: #ffffff;
+  background-color: #724969;
+}
+
+.totp_disable_record {
+  color: #ffffff;
+  background-color: #ac6ca2;
+}
+
+.rounded-container .ant-select .ant-select-selector {
+  border-radius:20px;
+}
+
