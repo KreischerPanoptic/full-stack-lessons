@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAH/TO Any shit</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <select class="form-select my-12 mx-4 w-50" aria-label="Default select example" onchange="remount(this)">
+        <option selected>Open this select menu</option>
+        <option value="5">Less</option>
+        <option value="10">Normal</option>
+        <option value="25">More</option>
+        <option value="-1">All</option>
+      </select>
+
+    <div id="root">
+        <p>SFW</p>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function remount(el) {
+            let rate = parseInt(el.value);
+            let rates = JSON.parse(localStorage.getItem('rates'));
+            
+
+            $("#root").children().each((index, e) => {
+                e.remove();
+            });
+            if(rate < 0) {
+                for(let obj of rates) {
+                    $("#root").append(`<div class="card shadow mt-2 mx-auto" style="width: 18rem;" id="${obj.cc}"><div class="card-body" id="body-${obj.cc}"><p>UAH to ${obj.cc}: ${obj.rate}</p></div></div>`)
+                }
+            }
+            else {
+                for(let i = 0; i < rate; ++i) {
+                    $("#root").append(`<div class="card shadow mt-2 mx-auto" style="width: 18rem;" id="${rates[i].cc}"><div class="card-body" id="body-${rates[i].cc}"><p>UAH to ${rates[i].cc}: ${rates[i].rate}</p></div></div>`)
+                }
+            }
+        }
+        $(document).ready(() => {
+            $("#root").each((index, e) => {
+                e.textContent = "NSFW"
+            });
+
+            const pi = 3.14;
+            //alert("LOL");
+
+            console.log('debug: ', pi);
+
+            let variable = "1";
+            variable = 1;
+            if(variable == '1') {
+                console.log(true ? 'yep' : 'no');
+            }
+            else {
+                console.log(false ? 'yep' : 'no')
+            }
+            console.log(variable === '1' ? 'yep' : 'no')
+
+            let arr = [
+                1,
+                '1',
+                true,
+                undefined,
+                null,
+                {
+                    'color': '#fff',
+                    'gender': 'm',
+                    age: 23 
+                }
+            ];
+
+            for(let i = 0; i < arr.length; ++i) {
+                console.log(arr[i]);
+            }
+
+            for(let a of arr) {
+                console.log(a);
+            }
+
+            function zadolbat(ar) {
+                for(let a of ar) {
+                    alert(a);
+                }
+                return ar;
+            }
+
+            //zadolbat(arr);
+            var rates = [];
+            axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
+            .then((response) => {
+                /*$("#root").each((index, e) => {
+                    e.textContent = response.data
+                });*/
+                console.log('response data: ', response.data);
+                rates = response.data;
+                /*for(let obj of response.data) {
+                    $("#root").append(`<div class="card shadow mt-2 mx-auto" style="width: 18rem;" id="${obj.cc}"><div class="card-body" id="body-${obj.cc}"><p>UAH to ${obj.cc}: ${obj.rate}</p></div></div>`)
+                }
+
+                $("#root > #RUB > #body-RUB").each((index, e) => {
+                    e.textContent = "UAH to RUB: -1000000000000"
+                });*/
+
+                localStorage.setItem('rates', JSON.stringify(response.data));
+            })
+            .catch(() => {
+                zadolbat([1,1,1,1])
+            })
+
+            /*for(let i = 0; i < 5; ++i) {
+                $("#root").append(`<div class="card shadow mt-2 mx-auto" style="width: 18rem;" id="${rates[i].cc}"><div class="card-body" id="body-${rates[i].cc}"><p>UAH to ${rates[i].cc}: ${rates[i].rate}</p></div></div>`)
+            }*/
+        })
+
+
+    </script>
+</body>
+</html>

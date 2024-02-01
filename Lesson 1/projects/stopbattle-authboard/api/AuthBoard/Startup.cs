@@ -152,8 +152,6 @@ namespace AuthBoard
                             "https://auth.stopbattle.org",
                             "https://backend.stopbattle.org",
                             "https://localhost:8000",
-                            "http://127.0.0.1:5500",
-                            "http://localhost:5500"
                         });
                         builder.AllowCredentials();
                         builder.AllowAnyMethod();
